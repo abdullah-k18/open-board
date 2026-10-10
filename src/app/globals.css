@@ -1,26 +1,74 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #efe4d0;
+  --ink: #241c16;
+  --ink-soft: #5a493c;
+  --cream: #f7f1e6;
+  --walnut: #5c3b24;
+  --walnut-deep: #3e2718;
+  --gold: #e7d7b4;
+  --moss: #1e4636;
+  --moss-deep: #16362a;
+  --check: #8c2e2a;
+  --square-light: #f3e6cf;
+  --square-dark: #8d6244;
+  --last: rgb(196 148 52 / 0.48);
+  color-scheme: light;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-cream: var(--cream);
+  --color-walnut: var(--walnut);
+  --color-gold: var(--gold);
+  --color-moss: var(--moss);
+  --color-check: var(--check);
+  --font-sans: var(--font-source), "Source Sans 3", sans-serif;
+  --font-display: var(--font-fraunces), "Fraunces", serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  background: var(--paper);
+  color: var(--ink);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+.board-frame {
+  background:
+    linear-gradient(180deg, #6d4a2e, var(--walnut) 18%, var(--walnut-deep));
+  box-shadow:
+    inset 0 0 0 2px #d7bc8b,
+    0 16px 36px rgb(48 28 14 / 0.18);
+}
+
+.square {
+  position: relative;
+}
+
+.square:focus-visible {
+  outline: 3px solid #f0d78c;
+  outline-offset: -3px;
+  z-index: 2;
+}
+
+.piece {
+  filter: drop-shadow(0 1px 0.5px rgb(36 28 22 / 0.4));
+  transition: transform 160ms ease;
+}
+
+.piece.is-selected {
+  transform: translateY(-8%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .piece {
+    transition: none;
+  }
 }
